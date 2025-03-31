@@ -1,0 +1,30 @@
+###Errors that might occur after doing (sudo apt update)
+W: GPG error: https://artifacts.elastic.co/packages/8.x/apt stable InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY D27D666CD88E42B4
+W: The repository 'https://artifacts.elastic.co/packages/8.x/apt stable InRelease' is not signed.
+N: Data from such a repository can't be authenticated and is therefore potentially dangerous to use.
+
+
+1. insecure repositories
+sudo apt update --allow-insecure-repositories
+
+2.gpg PUBLIC key not found 
+
+
+remove old files ---------
+
+sudo rm -f /usr/share/keyrings/elasticsearch-keyring.gpg
+sudo rm -rf /etc/apt/sources.list.d/elastic-8.x.list
+sudo apt clean
+sudo apt update
+
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+ls -l /usr/share/keyrings/elasticsearch-keyring.gpg
+gpg --no-default-keyring --keyring /usr/share/keyrings/elasticsearch-keyring.gpg --list-keys
+ 
+
+*THIS ABOVE COMMAND WILL SHOW THE PUBLIC KEY*
+*IF THE PUBLIC IS ACCESSIBLE THEN ONLY MOVE FURTHER ELSE REMOVE OLD FILES AND REPO AND REPEAT THE COMMANDS*
+
+
+sudo apt update
