@@ -1,0 +1,22 @@
+ELK-SERVER UBUNUTU --- 
+
+### ELK INSTALLATION 
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install openjdk-17-jdk -y
+java -version
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo tee /usr/share/keyrings/elasticsearch-keyring.gpg > /dev/null
+ls -l /usr/share/keyrings/elasticsearch-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
+sudo apt update
+sudo apt install elasticsearch kibana logstash -y
+sudo systemctl enable --now elasticsearch
+sudo systemctl enable --now kibana
+sudo systemctl enable --now logstash
+
+
+
+
+
+
+
